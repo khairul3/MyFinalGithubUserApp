@@ -22,5 +22,8 @@ interface UserDao {
     @Delete
     suspend fun deleteUser(model: GithubUserModel): Int
 
+    @Query("SELECT * from user_table ORDER BY login ASC")
+    fun getUserListProvider(): Cursor
+
 
 }

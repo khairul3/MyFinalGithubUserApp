@@ -48,12 +48,12 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
-<!--        <provider-->
-<!--            android:name=".provider.ContentProvider"-->
-<!--            android:authorities="com.khairul.myfinalgithubuserapp"-->
-<!--            android:exported="true"-->
-<!--            android:readPermission="com.khairul.myfinalgithubuserapp.READ_DATABASE"-->
-<!--            android:writePermission="com.khairul.myfinalgithubuserapp.WRITE_DATABASE" />-->
+        <provider
+            android:name=".provider.ContentProvider"
+            android:authorities="com.khairul.myfinalgithubuserapp"
+            android:exported="true"
+            android:readPermission="com.khairul.myfinalgithubuserapp.READ_DATABASE"
+            android:writePermission="com.khairul.myfinalgithubuserapp.WRITE_DATABASE" />
 
         <service android:name=".widget.WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS"/>
