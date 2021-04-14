@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="github_user">Github User Info</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="repositories">Repositori</string>
+
+    <string name="search_hint">Masukkan username...</string>
+    <string name="not_found">Tidak ditemukan</string>
+    <string name="not_have">%1$s tidak punya %2$s</string>
+    <string name="home">Beranda</string>
+    <string name="created_by_akhmad_khairul_mujidi">created by myself</string>
+
+    <string name="settings">Pengaturan</string>
+    <string name="language">Bahasa</string>
+    <string name="change_language">Alih Bahasa</string>
+    <string name="favorite">Favorit</string>
+    <string name="favorite_add">%s Ditambahkan</string>
+    <string name="favorite_remove">%s Dihapus</string>
+    <string name="reminder">Alarm Harian</string>
+    <string name="reminder_on">Pengingat dihidupkan</string>
+    <string name="reminder_off">Pengingat Dimatikan</string>
+    <string name="reminder_title">Menunggumu</string>
+    <string name="reminder_message">Tambahkan daftar favorit</string>
+    <string name="widget_enabled">Github widget aktif</string>
+    <string name="widget_disabled">Github Widget dimatikan</string>
+    <string name="location_not_found">Lokasi tidak ditemukan</string>
+    <string name="created_by">Created By: Akhmad Khairul Mujidi</string>
+    <string name="separator">Pemisah</string>
+    <string name="followings">3</string>
+    <string name="follower">65</string>
+    <string name="repos">23</string>
+
+</resources>
