@@ -2,7 +2,7 @@ package com.khairul.consumergithubapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.khairul.consumergithubapp.datasource.UserDataSource
+import com.khairul.consumergithubapp.data.UserDataSource
 import com.khairul.consumergithubapp.repository.UserRepository
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {

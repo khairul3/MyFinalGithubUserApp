@@ -11,9 +11,9 @@
     <string name="following">Followings</string>
     <string name="repositories">Repositories</string>
 
-    <string name="search_hint">Input Github Username First..</string>
+    <string name="search_hint">Search someone...</string>
     <string name="not_found">User Not Found</string>
-    <string name="not_have">%1$s Not Have %2$s</string>
+    <string name="nope">%1$s Not Have %2$s</string>
     <string name="home">Home</string>
     <string name="created_by_akhmad_khairul_mujidi">created by myself</string>
 
@@ -49,6 +49,6 @@
     <string name="exp_following" translatable="false">2</string>
     <string name="appwidget_text" translatable="false">EXAMPLE</string>
     <string name="add_widget" translatable="false">Add widget</string>
-    <string name="location">location</string>
-    <string name="name">Akhmad Khairul Mujidi</string>
+    <string name="location" translatable="false">location</string>
+    <string name="name" translatable="false">Akhmad Khairul Mujidi</string>
 </resources>

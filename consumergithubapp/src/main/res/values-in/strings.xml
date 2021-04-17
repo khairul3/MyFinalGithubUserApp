@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="not_found">pengguna tidak ditemukan</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="language_settings">Pengaturan Bahasa</string>
+    <string name="repositories">Repositori</string>
+    <string name="location">lokasi</string>
+    <string name="separator">separator</string>
+    <string name="location_not_found">Lokasi tidak dicantumkan</string>
+</resources>

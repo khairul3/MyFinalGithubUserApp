@@ -13,8 +13,8 @@ import com.khairul.myfinalgithubuserapp.R
 import com.shashank.sony.fancytoastlib.FancyToast
 import java.util.*
 
-class Alarm : BroadcastReceiver() {
-    companion object{
+class Reminder : BroadcastReceiver() {
+    companion object {
         private const val REMINDER_CODE = 101
     }
 
@@ -22,14 +22,14 @@ class Alarm : BroadcastReceiver() {
         showNotification(context)
     }
 
-    private fun showNotification(context: Context?){
+    private fun showNotification(context: Context?) {
         val channelId = "reminder_channel"
         val channelName = "reminder_github_user"
 
         val title = context?.resources?.getString(R.string.reminder_title)
         val message = context?.resources?.getString(R.string.reminder_message)
 
-        val intent= Intent(context, MainActivity::class.java)
+        val intent = Intent(context, MainActivity::class.java)
         val pendingIntent = TaskStackBuilder.create(context)
             .addParentStack(MainActivity::class.java)
             .addNextIntent(intent)
@@ -49,8 +49,9 @@ class Alarm : BroadcastReceiver() {
             .setSound(alarmSound)
             .setAutoCancel(true)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel =
+                NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
             channel.apply {
                 enableVibration(true)
                 vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
@@ -62,9 +63,9 @@ class Alarm : BroadcastReceiver() {
         notificationManagerCompat.notify(REMINDER_CODE, notification)
     }
 
-    fun setRepeatingReminder(context: Context?){
+    fun setRepeatingReminder(context: Context?) {
         val manager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent: PendingIntent = Intent(context, Alarm::class.java).let {
+        val intent: PendingIntent = Intent(context, Reminder::class.java).let {
             PendingIntent.getBroadcast(context, REMINDER_CODE, it, 0)
         }
 
@@ -79,17 +80,29 @@ class Alarm : BroadcastReceiver() {
             intent
         )
 
-        FancyToast.makeText(context, context.getString(R.string.reminder_on), FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show()
+        FancyToast.makeText(
+            context,
+            context.getString(R.string.reminder_on),
+            FancyToast.LENGTH_SHORT,
+            FancyToast.SUCCESS,
+            false
+        ).show()
     }
 
-    fun cancelAlarm(context: Context?){
+    fun cancelAlarm(context: Context?) {
         val manager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, Alarm::class.java)
+        val intent = Intent(context, Reminder::class.java)
         val pendingIntent = PendingIntent.getBroadcast(context, REMINDER_CODE, intent, 0)
         pendingIntent.cancel()
 
         manager.cancel(pendingIntent)
 
-        FancyToast.makeText(context, context.getString(R.string.reminder_off), FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show()
+        FancyToast.makeText(
+            context,
+            context.getString(R.string.reminder_off),
+            FancyToast.LENGTH_SHORT,
+            FancyToast.ERROR,
+            false
+        ).show()
     }
 }

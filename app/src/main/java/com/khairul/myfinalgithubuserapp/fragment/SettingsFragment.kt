@@ -8,13 +8,13 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreferenceCompat
 import com.khairul.myfinalgithubuserapp.R
-import com.khairul.myfinalgithubuserapp.util.Alarm
+import com.khairul.myfinalgithubuserapp.util.Reminder
 
 class SettingsFragment : PreferenceFragmentCompat(),
     SharedPreferences.OnSharedPreferenceChangeListener {
 
     private lateinit var preference: SwitchPreferenceCompat
-    private lateinit var alarm: Alarm
+    private lateinit var alarm: Reminder
     private lateinit var reminder: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_preference, rootKey)
-        alarm = Alarm()
+        alarm = Reminder()
         reminder = getString(R.string.reminder_key)
         preference = findPreference<SwitchPreferenceCompat>(reminder) as SwitchPreferenceCompat
         initSharedPreference()

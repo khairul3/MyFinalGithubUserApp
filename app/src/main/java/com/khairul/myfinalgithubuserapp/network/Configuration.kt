@@ -15,6 +15,7 @@ object Configuration {
                 val request = requestBuilder.build()
                 chain.proceed(request)
             }
+
             .connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
             .build()

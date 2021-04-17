@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">consumergithubapp</string>
+    <string name="app_name">Consumer Github App</string>
     <string name="public_repos" translatable="false">Repositories</string>
 
     <!-- Translatable-->
@@ -7,8 +7,15 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="language_settings">Language Settings</string>
+    <string name="repositories">repositories</string>
+    <string name="location">location</string>
+    <string name="separator">separator</string>
+    <string name="location_not_found">location not found</string>
 
     <!-- Example Strings-->
+    <string name="followings">25</string>
+    <string name="follower">8</string>
+    <string name="repos">22</string>
     <string name="exp_login" translatable="false">Login</string>
     <string name="exp_name" translatable="false">Name</string>
     <string name="exp_location" translatable="false">Location</string>
@@ -16,4 +23,5 @@
     <string name="exp_publicRepos" translatable="false">0</string>
     <string name="exp_followers" translatable="false">1</string>
     <string name="exp_following" translatable="false">2</string>
+
 </resources>

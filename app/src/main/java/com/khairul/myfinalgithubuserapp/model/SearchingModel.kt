@@ -1,7 +1,6 @@
 package com.khairul.myfinalgithubuserapp.model
 
 import android.os.Parcelable
-import com.khairul.myfinalgithubuserapp.model.GithubUserModel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

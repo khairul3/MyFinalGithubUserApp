@@ -15,11 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.khairul.myfinalgithubuserapp.R
 import com.khairul.myfinalgithubuserapp.adapter.UserAdapter
 import com.khairul.myfinalgithubuserapp.databinding.HomeFragmentBinding
-import com.khairul.myfinalgithubuserapp.util.ShowStates
 import com.khairul.myfinalgithubuserapp.util.State.*
 import com.khairul.myfinalgithubuserapp.viewModel.HomeViewModel
 
-class HomeFragment : Fragment(), ShowStates {
+class HomeFragment : Fragment() {
     private lateinit var homeBind: HomeFragmentBinding
     private lateinit var homeAdap: UserAdapter
     private val homeModel: HomeViewModel by navGraphViewModels(R.id.my_navigation)
@@ -35,17 +34,20 @@ class HomeFragment : Fragment(), ShowStates {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+
+
         homeBind.errLayout.emptyText.text = resources.getString(R.string.search_hint)
-        homeAdap = UserAdapter(arrayListOf()) { username, iv ->
+        homeAdap = UserAdapter(arrayListOf(), fun(username: String, iv: View) {
             findNavController().navigate(
                 HomeFragmentDirection.detailsAction(username),
                 FragmentNavigatorExtras(
                     iv to username
                 )
             )
-        }
+        })
 
         homeBind.recyclerHome.apply {
+
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = homeAdap
         }
@@ -62,7 +64,8 @@ class HomeFragment : Fragment(), ShowStates {
                 override fun onQueryTextChange(newText: String): Boolean = false
             })
         }
-        observeHome()
+
+        observe()
     }
 
     class HomeFragmentDirection private constructor() {
@@ -84,7 +87,7 @@ class HomeFragment : Fragment(), ShowStates {
         }
     }
 
-    private fun observeHome() {
+    private fun observe() {
         homeModel.searchResult.observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.state) {
@@ -108,33 +111,32 @@ class HomeFragment : Fragment(), ShowStates {
         })
     }
 
-    override fun homeLoading(homeBind: HomeFragmentBinding): Int? {
-        homeBind.apply {
-            errLayout.mainNotFound.visibility = gone
-            progress.start()
-            recyclerHome.visibility = gone
-        }
-        return super.homeLoading(homeBind)
+
+    private fun homeLoading(homeBind: HomeFragmentBinding): HomeFragmentBinding {
+        homeBind.errLayout.mainNotFound.visibility = View.GONE
+        homeBind.progress.start()
+        homeBind.recyclerHome.visibility = View.GONE
+        return homeBind
     }
 
-    override fun homeSuccess(homeBind: HomeFragmentBinding): Int? {
+    private fun homeSuccess(homeBind: HomeFragmentBinding): HomeFragmentBinding {
         homeBind.also {
-            it.errLayout.mainNotFound.visibility = gone
+            it.errLayout.mainNotFound.visibility = View.GONE
             it.progress.stop()
-            it.recyclerHome.visibility = visible
+            it.recyclerHome.visibility = View.VISIBLE
         }
-        return super.homeSuccess(homeBind)
+        return homeBind
     }
 
-    override fun homeError(homeBind: HomeFragmentBinding, message: String?): Int? {
+    private fun homeError(homeBind: HomeFragmentBinding, message: String?): HomeFragmentBinding {
         homeBind.apply {
             errLayout.apply {
-                mainNotFound.visibility = visible
+                mainNotFound.visibility = View.VISIBLE
                 emptyText.text = message ?: resources.getString(R.string.not_found)
             }
             progress.stop()
-            recyclerHome.visibility = gone
+            recyclerHome.visibility = View.GONE
         }
-        return super.homeError(homeBind, message)
+        return homeError(homeBind, message)
     }
 }

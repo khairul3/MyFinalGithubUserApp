@@ -11,17 +11,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.khairul.myfinalgithubuserapp.R
 import com.khairul.myfinalgithubuserapp.adapter.UserAdapter
 import com.khairul.myfinalgithubuserapp.databinding.FollowFragmentBinding
-import com.khairul.myfinalgithubuserapp.util.ShowStates
 import com.khairul.myfinalgithubuserapp.util.State.*
 import com.khairul.myfinalgithubuserapp.util.TypeView
+import com.khairul.myfinalgithubuserapp.util.TypeView.FOLLOWER
+import com.khairul.myfinalgithubuserapp.util.TypeView.FOLLOWING
 import com.khairul.myfinalgithubuserapp.viewModel.FollowViewModel
 
-class FollowFragment : Fragment(), ShowStates {
+class FollowFragment : Fragment() {
     private lateinit var binding: FollowFragmentBinding
     private lateinit var users: UserAdapter
     private lateinit var followViewModel: FollowViewModel
     private lateinit var name: String
     private var type: String? = null
+
 
     companion object {
         private const val TYPE = "type"
@@ -38,15 +40,14 @@ class FollowFragment : Fragment(), ShowStates {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            name = it.getString(USERNAME).toString()
-            type = it.getString(TYPE)
+            name = it.getString(USERNAME).toString(); type = it.getString(TYPE)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FollowFragmentBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -55,10 +56,9 @@ class FollowFragment : Fragment(), ShowStates {
         super.onViewCreated(view, savedInstanceState)
 
         followViewModel = ViewModelProvider(
-            this, ViewModelProvider.NewInstanceFactory()
+             this, ViewModelProvider.NewInstanceFactory()
         )[FollowViewModel::class.java]
-
-        users = UserAdapter(arrayListOf()) { user, _ -> }
+        users = UserAdapter(arrayListOf()) { _ , _ -> }
         binding.recylerFollow.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = users
@@ -67,24 +67,24 @@ class FollowFragment : Fragment(), ShowStates {
         when {
             type == resources.getString(R.string.following) -> followViewModel.setFollow(
                 name,
-                TypeView.FOLLOWING
+                FOLLOWING
             )
             type == resources.getString(R.string.followers) -> followViewModel.setFollow(
                 name,
-                TypeView.FOLLOWER
+                FOLLOWER
             )
             else -> followError(binding, null)
         }
         follow()
     }
 
-    override fun followLoading(followBinding: FollowFragmentBinding): Int? {
+    private fun followLoading(followBinding: FollowFragmentBinding): FollowFragmentBinding {
         followBinding.also {
-            it.errLayout.mainNotFound.visibility = gone
+            it.errLayout.mainNotFound.visibility = View.GONE
             it.progress.start()
-            it.recylerFollow.visibility = gone
+            it.recylerFollow.visibility = View.GONE
         }
-        return super.followLoading(followBinding)
+        return followBinding
     }
 
     private fun follow() {
@@ -96,7 +96,7 @@ class FollowFragment : Fragment(), ShowStates {
                         users.setData(it.data)
                     }
                     else -> {
-                        followError(binding, resources.getString(R.string.not_have, name, type))
+                        followError(binding, resources.getString(R.string.nope, name, type))
                     }
                 }
                 LOADING -> followLoading(binding)
@@ -106,24 +106,27 @@ class FollowFragment : Fragment(), ShowStates {
     }
 
 
-    override fun followSuccess(followBinding: FollowFragmentBinding): Int? {
+    private fun followSuccess(followBinding: FollowFragmentBinding): FollowFragmentBinding {
         followBinding.also {
-            it.errLayout.mainNotFound.visibility = gone
+            it.errLayout.mainNotFound.visibility = View.GONE
             it.progress.stop()
-            it.recylerFollow.visibility = visible
+            it.recylerFollow.visibility = View.VISIBLE
         }
-        return super.followSuccess(followBinding)
+        return followBinding
     }
 
-    override fun followError(followBinding: FollowFragmentBinding, message: String?): Int? {
+    private fun followError(
+        followBinding: FollowFragmentBinding,
+        message: String?
+    ): FollowFragmentBinding {
         followBinding.also { followFragmentBinding ->
             followFragmentBinding.errLayout.also {
-                it.mainNotFound.visibility = visible
+                it.mainNotFound.visibility = View.VISIBLE
                 it.emptyText.text = message ?: resources.getString(R.string.not_found)
             }
             followFragmentBinding.progress.stop()
-            followFragmentBinding.recylerFollow.visibility = gone
+            followFragmentBinding.recylerFollow.visibility = View.GONE
         }
-        return super.followError(followBinding, message)
+        return followError(followBinding, message)
     }
 }

@@ -21,12 +21,12 @@
 
         />
 
-    <com.victor.loading.rotate.RotateLoading
+    <ProgressBar
         android:id="@+id/progress"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:visibility="invisible"
-        app:loading_color="@color/yellow"
+        android:progressTint="@color/yellow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

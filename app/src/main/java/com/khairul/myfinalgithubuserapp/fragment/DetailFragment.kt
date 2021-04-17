@@ -38,7 +38,7 @@ class DetailFragment : Fragment() {
         companion object {
             @JvmStatic
             fun fromBundle(bundle: Bundle): DetailFragmentArgs {
-                bundle.setClassLoader(DetailFragmentArgs::class.java.classLoader)
+                bundle.classLoader = DetailFragmentArgs::class.java.classLoader
                 val __Username: String?
                 when {
                     bundle.containsKey("Username") -> {

@@ -1,4 +1,4 @@
-package com.khairul.consumergithubapp.binding
+package com.khairul.consumergithubapp.repository
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

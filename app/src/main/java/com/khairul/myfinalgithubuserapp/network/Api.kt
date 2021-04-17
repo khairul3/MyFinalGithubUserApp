@@ -17,7 +17,7 @@ interface Api {
         @Path("username") username: String?
     ): GithubUserModel
 
-    @GET("users/{username}/followers",)
+    @GET("users/{username}/followers")
     suspend fun userFollower(
         @Path("username") username: String?
     ): List<GithubUserModel>

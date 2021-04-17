@@ -1,4 +1,4 @@
-package com.khairul.consumergithubapp.contract
+package com.khairul.consumergithubapp.data
 
 import android.net.Uri
 import android.provider.BaseColumns

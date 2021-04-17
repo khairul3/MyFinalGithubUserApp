@@ -6,24 +6,24 @@ import androidx.lifecycle.liveData
 import com.khairul.myfinalgithubuserapp.database.UserDao
 import com.khairul.myfinalgithubuserapp.model.GithubUserModel
 import com.khairul.myfinalgithubuserapp.network.Configuration
-import com.khairul.myfinalgithubuserapp.util.Resource
+import com.khairul.myfinalgithubuserapp.util.Result
 import kotlinx.coroutines.Dispatchers
 
 class UserFavoriteRepositories(private val data: UserDao) {
     private val fave: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getDetailUser(username: String) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(null))
+        emit(Result.loading(null))
         val user = data.getUserDetail(username)
         if (user != null) {
             fave.postValue(true)
-            emit(Resource.success(user))
+            emit(Result.success(user))
         } else {
             fave.postValue(false)
             try {
-                emit(Resource.success(Configuration.api.userDetail(username)))
+                emit(Result.success(Configuration.api.userDetail(username)))
             } catch (e: Exception) {
-                emit(Resource.error(null, e.message ?: "Error"))
+                emit(Result.error(null, e.message ?: "Error"))
             }
         }
     }

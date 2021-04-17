@@ -15,10 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.khairul.myfinalgithubuserapp.R
 import com.khairul.myfinalgithubuserapp.adapter.UserFavoriteAdapter
 import com.khairul.myfinalgithubuserapp.databinding.FavoriteFragmentBinding
-import com.khairul.myfinalgithubuserapp.util.ShowStates
 import com.khairul.myfinalgithubuserapp.viewModel.FavoriteViewModel
 
-class FavoriteFragment : Fragment(), ShowStates {
+class FavoriteFragment : Fragment() {
     private lateinit var binding: FavoriteFragmentBinding
     private lateinit var favAdapter: UserFavoriteAdapter
     private val favModel: FavoriteViewModel by navGraphViewModels(R.id.my_navigation)
@@ -59,7 +58,7 @@ class FavoriteFragment : Fragment(), ShowStates {
                     favoriteError(
                         binding,
                         resources.getString(
-                            R.string.not_have,
+                            R.string.nope,
                             "",
                             resources.getString(R.string.favorite)
                         )
@@ -69,37 +68,37 @@ class FavoriteFragment : Fragment(), ShowStates {
         })
     }
 
-    override fun favoriteLoading(favoriteFragmentBinding: FavoriteFragmentBinding): Int? {
+    private fun favoriteLoading(favoriteFragmentBinding: FavoriteFragmentBinding): FavoriteFragmentBinding {
         binding.apply {
-            errlayout.mainNotFound.visibility = gone
-            progress.start()
-            recyclerFav.visibility = gone
+            errlayout.mainNotFound.visibility = View.GONE
+            progress.visibility = View.VISIBLE
+            recyclerFav.visibility = View.GONE
         }
-        return super.favoriteLoading(favoriteFragmentBinding)
+        return favoriteFragmentBinding
     }
 
-    override fun favoriteSuccess(favoriteFragmentBinding: FavoriteFragmentBinding): Int? {
+    private fun favoriteSuccess(favoriteFragmentBinding: FavoriteFragmentBinding): FavoriteFragmentBinding {
         binding.apply {
-            errlayout.mainNotFound.visibility = gone
-            progress.stop()
-            recyclerFav.visibility = visible
+            errlayout.mainNotFound.visibility = View.GONE
+            progress.visibility = View.INVISIBLE
+            recyclerFav.visibility = View.VISIBLE
         }
-        return super.favoriteSuccess(favoriteFragmentBinding)
+        return favoriteFragmentBinding
     }
 
-    override fun favoriteError(
+    private fun favoriteError(
         favoriteFragmentBinding: FavoriteFragmentBinding,
         message: String?
-    ): Int? {
+    ): FavoriteFragmentBinding {
         binding.apply {
             errlayout.apply {
-                mainNotFound.visibility = visible
+                mainNotFound.visibility = View.VISIBLE
                 emptyText.text = message ?: resources.getString(R.string.not_found)
             }
-            progress.stop()
-            recyclerFav.visibility = gone
+            progress.visibility = View.INVISIBLE
+            recyclerFav.visibility = View.GONE
         }
-        return super.favoriteError(favoriteFragmentBinding, message)
+        return favoriteError(favoriteFragmentBinding, message)
     }
 
     class FavoriteFragmentDirections private constructor() {

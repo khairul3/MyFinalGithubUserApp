@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.khairul.consumergithubapp.adapter.UserAdapter
 import com.khairul.consumergithubapp.databinding.ActivityMainBinding
-import com.khairul.consumergithubapp.fragment.DetailFragment
 import com.khairul.consumergithubapp.viewmodel.UserViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
 
         usersAdapter = UserAdapter(ArrayList()) { githubUser ->
-            val fragment = DetailFragment.newInstance(githubUser)
+            val fragment = DialogFragment.newInstance(githubUser)
             fragment.show(supportFragmentManager, "userDetail")
         }
 

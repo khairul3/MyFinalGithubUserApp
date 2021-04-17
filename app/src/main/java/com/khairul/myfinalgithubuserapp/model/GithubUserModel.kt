@@ -28,4 +28,4 @@ data class GithubUserModel(
     @ColumnInfo(name = "type")
     val type: String?,
 
-) : Parcelable
+    ) : Parcelable

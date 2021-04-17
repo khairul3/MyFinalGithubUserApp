@@ -1,14 +1,13 @@
-package com.khairul.consumergithubapp.datasource
+package com.khairul.consumergithubapp.data
 
 import android.content.ContentResolver
-import com.khairul.consumergithubapp.contract.DatabaseContract
-import com.khairul.consumergithubapp.contract.DatabaseContract.UserColumns.Companion.CONTENT_URI
-import com.khairul.consumergithubapp.model.GithubUser
+import com.khairul.consumergithubapp.data.DatabaseContract.UserColumns.Companion.CONTENT_URI
+import com.khairul.consumergithubapp.model.GithubUserModel
 
 class UserDataSource(private val contentResolver: ContentResolver) {
 
-    fun getUsers(): List<GithubUser> {
-        val result: MutableList<GithubUser> = mutableListOf()
+    fun getUsers(): List<GithubUserModel> {
+        val data: MutableList<GithubUserModel> = mutableListOf()
 
         val cursor = contentResolver.query(
             CONTENT_URI,
@@ -20,8 +19,8 @@ class UserDataSource(private val contentResolver: ContentResolver) {
 
         cursor?.apply {
             while (moveToNext()) {
-                result.add(
-                    GithubUser(
+                data.add(
+                    GithubUserModel(
                         getInt(getColumnIndexOrThrow(DatabaseContract.UserColumns.ID)),
                         getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.LOGIN)),
                         getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.AVATAR_URL)),
@@ -36,6 +35,6 @@ class UserDataSource(private val contentResolver: ContentResolver) {
             }
             close()
         }
-        return result.toList()
+        return data.toList()
     }
 }

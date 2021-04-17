@@ -6,12 +6,12 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.khairul.myfinalgithubuserapp.model.GithubUserModel
 import com.khairul.myfinalgithubuserapp.repository.UserRepositories
-import com.khairul.myfinalgithubuserapp.util.Resource
+import com.khairul.myfinalgithubuserapp.util.Result
 
 class HomeViewModel : ViewModel() {
     private val name: MutableLiveData<String> = MutableLiveData()
 
-    val searchResult: LiveData<Resource<List<GithubUserModel>>> = Transformations
+    val searchResult: LiveData<Result<List<GithubUserModel>>> = Transformations
         .switchMap(name) {
             UserRepositories.searchUsers(it)
         }
