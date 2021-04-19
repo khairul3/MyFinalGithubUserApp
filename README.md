@@ -43,5 +43,5 @@ This repository is the result of my submission in [Dicoding](https://www.dicodin
 ## Preview
 ![logo](https://user-images.githubusercontent.com/79302158/115179737-9664db80-a106-11eb-862e-9b7724ee46f8.jpg)
 
-![logo](https://user-images.githubusercontent.com/79302158/115179744-995fcc00-a106-11eb-9e4f-3ea128a3c404.jpg)
-
+![2](https://user-images.githubusercontent.com/79302158/115179744-995fcc00-a106-11eb-9e4f-3ea128a3c404.jpg)
+![6](https://user-images.githubusercontent.com/79302158/115179749-9d8be980-a106-11eb-8b3f-6c96f302f882.jpg)![3](https://user-images.githubusercontent.com/79302158/115179752-9e248000-a106-11eb-8d6f-9029ca45867c.jpg)
