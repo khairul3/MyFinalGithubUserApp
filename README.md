@@ -41,5 +41,7 @@ This repository is the result of my submission in [Dicoding](https://www.dicodin
 - [Fancy Toast](https://github.com/Shashank02051997/FancyToast-Android)  
 
 ## Preview
-![1](https://user-images.githubusercontent.com/79302158/115179737-9664db80-a106-11eb-862e-9b7724ee46f8.jpg)
+![logo](https://user-images.githubusercontent.com/79302158/115179737-9664db80-a106-11eb-862e-9b7724ee46f8.jpg)
+
+![logo](https://user-images.githubusercontent.com/79302158/115179744-995fcc00-a106-11eb-9e4f-3ea128a3c404.jpg)
 
