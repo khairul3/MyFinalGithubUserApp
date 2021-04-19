@@ -38,5 +38,8 @@ This repository is the result of my submission in [Dicoding](https://www.dicodin
 - [Glide](https://github.com/bumptech/glide)    
 - [AndroidX](https://mvnrepository.com/artifact/androidx)    
 - [Sweet Alert](https://github.com/F0RIS/sweet-alert-dialog)    
-- [Fancy Toast](https://github.com/Shashank02051997/FancyToast-Android)    
+- [Fancy Toast](https://github.com/Shashank02051997/FancyToast-Android)  
+
+## Preview
+![1](https://user-images.githubusercontent.com/79302158/115179737-9664db80-a106-11eb-862e-9b7724ee46f8.jpg)
 
